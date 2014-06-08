@@ -1,0 +1,34 @@
+<!doctype html>
+<html ng-app>
+<head>
+	<meta charset="UTF-8">
+	<script src="libs/angular/angular.js"></script>
+</head>
+<body>
+	<form name="sampleForm" ng-init="name = '철수'">
+		이름: <input type="text" name="name" ng-model="name" ng-maxlength="3" ng-required="true">
+		<span class="error" ng-show="sampleForm.name.$error.required">필수입력</span>
+		<br/>
+		핸드폰 번호: <input type="text" name="tel" ng-model="tel" ng-pattern="/^\d{3}-\d{3,4}-\d{4}$/">
+		<span class="error" ng-show="sampleForm.tel.$error.pattern">000-0000-0000</span>
+		<br/>
+		<p>사용자 정보: {{name}}/{{tel}}</p>
+		<p>sampleForm.name.$valid = {{sampleForm.name.$valid}}</p>
+		<p>sampleForm.name.$error = {{sampleForm.name.$error}}</p>
+		<p>sampleForm.tel.$valid = {{sampleForm.tel.$valid}}</p>
+		<p>sampleForm.tel.$error = {{sampleForm.tel.$error}}</p>
+		<p>sampleForm.$valid = {{sampleForm.$valid}}</p>
+		<p>sampleForm.$error.required = {{sampleForm.$error.required}}</p>
+	</form>	
+	<p></p>
+	<form name="sampleForm2" ng-init="value1 = true; value2 = '좋다';">
+		선택 1: <input type="checkbox" name="check1" ng-model="value1">
+		선택 2: <input type="checkbox" name="check2" ng-model="value2" ng-true-value="좋다" ng-false-value="싫다">
+		<br/>
+		<p>선택1의 바인딩된 값: {{value1}}</p>
+		<p>선택2의 바인딩된 값: {{value2}}</p>
+	</form>
+	<p></p>
+	
+</body>
+</html>
