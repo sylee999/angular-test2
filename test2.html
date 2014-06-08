@@ -1,0 +1,23 @@
+<!doctype html>
+<html ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>one way data biding</title>
+	<script src="libs/angular/angular.js"></script>
+	<script>
+		function mainCtrl($scope) {
+			var menuList = [
+				{itemId:1, itemName: '샌드위치', itemPrice:2000, itemCount:0},
+				{itemId:2, itemName: '아메리카노', itemPrice:1000, itemCount:0},
+				{itemId:3, itemName: '카푸치노', itemPrice:1500, itemCount:0},
+			];
+
+			$scope.menuList = menuList;
+			$scope.totalPrice = 0;
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
