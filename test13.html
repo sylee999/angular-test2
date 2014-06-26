@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="sampleApp">
+<head>
+	<meta charset="UTF-8">
+	<script src="libs/angular/angular.js"></script>
+	<script>
+		angular.module('sampleApp', [])
+			.controller('demoCtrl', ['$scope', function($scope) {
+				$scope.helloList = [{name: 'google'}, {name: 'naver'}, {name: 'angular'}];
+				$scope.sendMessage = function(toSb) {
+					console.log(toSb + "에게 메시지 보냄");
+				};
+			}])
+			.directive('hello', function() {
+				return {
+					templateUrl: "test13-tpl.html",
+					restrict: 'AE',
+					scope: {
+						name: "=to",
+					}
+				}
+			});
+	</script>
+</head>
+<body ng-controller="demoCtrl">
+<!-- 	<hello to="google"></hello>
+	<hello to="naver"></hello>
+	<hello></hello>
+ -->
+ 	<!-- <hello ng-repeat="helloSb in helloList" to="{{helloSb.name}}" send="sendMessage(helloSb.name)"></hello> -->
+ 	<ul>
+ 		<li ng-repeat="helloSb in helloList">
+ 			<input type="text" ng-model="helloSb.name">
+ 		</li>
+ 	</ul>
+ 	<hello ng-repeat="helloSb in helloList" to="helloSb.name"></hello>
+ </body>
+</html>
