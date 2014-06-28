@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="sampleApp">
+<head>
+	<meta charset="UTF-8">
+	<script src="libs/angular/angular.js"></script>
+	<script>
+		angular.module('sampleApp', [])
+			.factory('AppName', [function(){
+				return 'demo app';
+			}])
+			.factory('UserResource', [function() {
+				var userList = [];
+
+				return {
+					addUser: function(newUser) {
+						userList.push(newUser);
+					},
+					updateUser: function(idx, updateUser) {
+						userList[idx] = updateUser;
+					},
+					deleteUser: function(idx) {
+						userList[idx] = undefined;
+					},
+					selectUsers: function() {
+						return userList;
+					}
+				};
+			}])
+			.controller('mainCtrl', function($scope, AppName, UserResource){
+				$scope.appName = AppName;
+				$scope.users = UserResource.selectUsers();
+				$scope.addNewUser = function(newUser) {
+					UserResource.addUser({
+						name: newUser.name,
+						email: newUser.email
+					})
+				}
+			})
+	</script>
+</head>
+<body ng-controller="mainCtrl">
+	<p>app name: {{appName}}</p>
+	<div>
+		이름: <input type="text" ng-model="newUser.name">,
+		이메일: <input type="text" ng-model="newUser.email">
+		<button ng-click="addNewUser(newUser)">Add user</button>
+	</div>
+	<ul>
+		<li ng-repeat="user in users">{{user.name}}, {{user.email}}</li>
+	</ul>
+</body>
+</html>
